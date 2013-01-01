@@ -7,9 +7,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-import javassist.compiler.ast.Pair;
-
-
 import jxl.read.biff.BiffException;
 import jxl.write.Label;
 import jxl.write.Number;
