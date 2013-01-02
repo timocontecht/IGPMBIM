@@ -20,8 +20,8 @@ public class ExportQuantities
 {
 	public static void main(String[] args) throws ServerException, UserException, RowsExceededException, BiffException, WriteException, IOException
 	{
-		//queryAll();
-		exportWallAreaPerPhase();
+		queryAll();
+		//exportWallAreaPerPhase();
 	}
 	
 	public static void queryAll() throws ServerException, UserException 
@@ -35,14 +35,21 @@ public class ExportQuantities
 		while (it.hasNext())
 		{
 			Storey s = it.next();
-			List<SDataObject> walls = s.getObjectsByType("IfcWallStandardCase");
+			List<SDataObject> objects = s.getObjectsByType("IfcDoor");
+			objects.addAll(s.getObjectsByType("IfcColumn"));
+			objects.addAll(s.getObjectsByType("IfcRoof"));
+			objects.addAll(s.getObjectsByType("IfcStair"));
+			objects.addAll(s.getObjectsByType("IfcWindow"));
+			objects.addAll(s.getObjectsByType("IfcSlab"));
+			objects.addAll(s.getObjectsByType("IfcWallStandardCase"));
 			
-			Iterator<SDataObject> wallit = walls.iterator();
 			
-			while (wallit.hasNext())
+			Iterator<SDataObject> objectIt = objects.iterator();
+			
+			while (objectIt.hasNext())
 			{
-				SDataObject wall = wallit.next();
-				PropertyObject qo = new PropertyObject(wall, s);
+				SDataObject object = objectIt.next();
+				PropertyObject qo = new PropertyObject(object, s);
 				qo.printProperties();
 			}
 		}
@@ -84,6 +91,7 @@ public class ExportQuantities
 				{
 					Double aggregatedLength = lengthPerPhase.get(phase);
 					aggregatedLength = aggregatedLength + length;
+					lengthPerPhase.put(phase, aggregatedLength);
 				}
 				// create new HashMap entry
 				else
@@ -113,5 +121,5 @@ public class ExportQuantities
 	}
 	
 	// this uses the example project name, please exchange it with the name of your group's project
-	private static final String projectName = "Tubantia";
+	private static final String projectName = "Demo Simple";
 }

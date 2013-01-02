@@ -13,7 +13,6 @@ import jxl.write.Number;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
