@@ -44,43 +44,49 @@ public class QueryMain {
 				PluginManager pluginManager = new PluginManager();
 				bimServerClient = new BimServerClient(pluginManager);
 		        
-		        bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("hartmann.utwente@gmail.com", "Powerman"));
-		        bimServerClient.connectSoap("http://localhost:8082/soap", false);
+		        bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("test@test.com", "Test"));
+		        bimServerClient.connectSoap("http://ctwbisql1.ctw.utwente.nl:8080/bimserver/soap", false);
 		        service = bimServerClient.getServiceInterface();
 		    } catch (ConnectionException e) {
 		        e.printStackTrace();
 			}
 	}
 	
-	public HashSet<Storey> getStoreysFromServer(String projectName, Long revisionId) throws ServerException, UserException 
+	public SProject getProject(String projectName) throws ServerException, UserException
 	{
-		 List<SProject> projects = service.getAllProjects();
-         SProject project = null;
-         
-         if (projects == null)
-         {
-         	throw new RuntimeException("No projects");
-         	
-         }
-         if (projects.isEmpty()) {
-             throw new RuntimeException("No projects");
+		List<SProject> projects = service.getAllProjects();
+        SProject project = null;
+        
+        if (projects == null)
+        {
+        	throw new RuntimeException("No projects");
+        	
+        }
+        if (projects.isEmpty()) {
+            throw new RuntimeException("No projects");
+           
+        }
+        for (SProject p : projects) {
+            String pN = p.getName();
             
-         }
-         for (SProject p : projects) {
-             String pN = p.getName();
-             
-             if (pN.equals(projectName))
-             {
-            	 project = p;
-             }
-         }
- 
-		return getStoreysFromServer(project, revisionId);
+            if (pN.equals(projectName))
+            {
+           	 project = p;
+            }
+        }
+        
+        return project;
 	}
 	
-	private HashSet<Storey> getStoreysFromServer(SProject project, Long revisionId) throws ServerException, UserException
+	public HashSet<ObjectContainer> getStoreysFromServer(String projectName, Long revisionId) throws ServerException, UserException 
 	{
-		HashSet<Storey> storeys = new HashSet<Storey>();
+		 
+		return getStoreysFromServer(getProject(projectName), revisionId);
+	}
+	
+	private HashSet<ObjectContainer> getStoreysFromServer(SProject project, Long revisionId) throws ServerException, UserException
+	{
+		HashSet<ObjectContainer> storeys = new HashSet<ObjectContainer>();
 		
 	
 		if (project == null)
@@ -96,7 +102,7 @@ public class QueryMain {
         
         for (SDataObject s : objects)
         {
-        	Storey storey = new Storey(s, service, revisionId);
+        	ObjectContainer storey = new ObjectContainer(s, service, revisionId);
         	storeys.add(storey);
         }
 		

@@ -25,15 +25,15 @@ import org.bimserver.shared.exceptions.UserException;
 public class PropertyObject 
 {
 	private SDataObject object;
-	private Storey storey;
+	private ObjectContainer container;
 	
 	
 	
 
-	public PropertyObject(SDataObject object, Storey storey) throws ServerException, UserException
+	public PropertyObject(SDataObject object, ObjectContainer storey) throws ServerException, UserException
 	{
 		this.object = object;
-		this.storey = storey;
+		this.container = storey;
 		
 		getProperties();
 	}
@@ -56,7 +56,7 @@ public class PropertyObject
 						if (data instanceof SReferenceDataValue)
 							 {
 								 String propertySetRelGuid = ((SReferenceDataValue)data).getGuid();
-								 SDataObject propertySetRel = storey.getObject(propertySetRelGuid);
+								 SDataObject propertySetRel = container.getObject(propertySetRelGuid);
 								 
 								 //System.out.println(propertySetRel.getType() + " " + propertySetRel.getName());
 								 List<SDataValue> relProperties = propertySetRel.getValues();
@@ -69,7 +69,7 @@ public class PropertyObject
 										 if (propertyrel instanceof SReferenceDataValue)
 										 {
 											 String propertySetGuid = ((SReferenceDataValue)propertyrel).getGuid();
-											 SDataObject propertySet = storey.getObject(propertySetGuid);
+											 SDataObject propertySet = container.getObject(propertySetGuid);
 											 
 											 List<SDataValue> propertySetList = propertySet.getValues();
 											 
@@ -87,8 +87,8 @@ public class PropertyObject
 															 {
 																 Long propertyObjectId = ((SReferenceDataValue)property).getOid();
 																 SDataObject propertySingle = 
-																		 	storey.getService().getDataObjectByOid(
-																		 			storey.getRevisionId(), 
+																		 	container.getService().getDataObjectByOid(
+																		 			container.getRevisionId(), 
 																		 			propertyObjectId,
 																		 			"IfcPropertySingleValue");
 															 
@@ -198,16 +198,16 @@ public class PropertyObject
 	{
 		QueryMain m = new QueryMain();
 		m.connectService();
-		HashSet<Storey> storeys = m.getStoreysFromServer("Tubantia", null);
+		HashSet<ObjectContainer> storeys = m.getStoreysFromServer("Tubantia", null);
 		
 		ExcelSheet sheet = new ExcelSheet("C:\\Users\\HartmannT\\IGPM\\Project\\Quantities.xls", 
 				"C:\\Users\\HartmannT\\IGPM\\Project\\Quantities_new.xls",
 				"Quantities");
 		
-		Iterator<Storey> it = storeys.iterator();
+		Iterator<ObjectContainer> it = storeys.iterator();
 		while (it.hasNext())
 		{
-			Storey s = it.next();
+			ObjectContainer s = it.next();
 			List<SDataObject> walls = s.getObjectsByType("IfcWallStandardCase");
 			
 			Iterator<SDataObject> wallit = walls.iterator();

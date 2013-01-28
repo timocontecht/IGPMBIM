@@ -1,6 +1,7 @@
 package org.visico.igpm;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -13,6 +14,8 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
 import org.bimserver.interfaces.objects.SDataObject;
+import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -21,20 +24,81 @@ public class ExportQuantities
 	public static void main(String[] args) throws ServerException, UserException, RowsExceededException, BiffException, WriteException, IOException
 	{
 		queryAll();
+		//queryAllByStorey();
 		//exportWallAreaPerPhase();
 	}
+	
 	
 	public static void queryAll() throws ServerException, UserException 
 	{
 		QueryMain m = new QueryMain();
 		m.connectService();
 		
-		HashSet<Storey> storeys = m.getStoreysFromServer(projectName, null);
+		ServiceInterface service = m.getService();
+		SProject project = m.getProject(projectName);
 		
-		Iterator<Storey> it = storeys.iterator();
+		long revisionId = project.getLastRevisionId();
+    	
+    	// get storey elements
+       List<SDataObject> objects = new ArrayList<SDataObject>();
+       
+       List<SDataObject> temp = service.getDataObjectsByType(revisionId, "IfcDoor");
+       if (temp != null)
+    	   objects.addAll(temp);
+       
+       temp = service.getDataObjectsByType(revisionId, "IfcColumn");
+       if (temp != null)
+    	   objects.addAll(temp);
+       
+       temp = service.getDataObjectsByType(revisionId, "IfcRoof");
+       if (temp != null)
+    	   objects.addAll(temp);
+       
+       temp = service.getDataObjectsByType(revisionId, "IfcStair");
+       if (temp != null)
+    	   objects.addAll(temp);
+       
+       temp = service.getDataObjectsByType(revisionId, "IfcWindow");
+       if (temp != null)
+    	   objects.addAll(temp);
+       
+       temp = service.getDataObjectsByType(revisionId, "IfcSlab");
+       if (temp != null)
+    	   objects.addAll(temp);
+       
+       temp = service.getDataObjectsByType(revisionId, "IfcWallStandardCase");
+       if (temp != null)
+    	   objects.addAll(temp);
+       	
+			
+			Iterator<SDataObject> objectIt = objects.iterator();
+			
+			while (objectIt.hasNext())
+			{
+				SDataObject object = objectIt.next();
+				ObjectContainer container = new ObjectContainer(object, service, revisionId);
+				
+				PropertyObject qo = new PropertyObject(object, container);
+				qo.printProperties();
+			}
+		
+		
+		
+	}
+
+	// will only work if storey objects are linked to other objcets; 
+	// check by browsing the storey object on the ifc server
+	public static void queryAllByStorey() throws ServerException, UserException 
+	{
+		QueryMain m = new QueryMain();
+		m.connectService();
+		
+		HashSet<ObjectContainer> storeys = m.getStoreysFromServer(projectName, null);
+		
+		Iterator<ObjectContainer> it = storeys.iterator();
 		while (it.hasNext())
 		{
-			Storey s = it.next();
+			ObjectContainer s = it.next();
 			List<SDataObject> objects = s.getObjectsByType("IfcDoor");
 			objects.addAll(s.getObjectsByType("IfcColumn"));
 			objects.addAll(s.getObjectsByType("IfcRoof"));
@@ -63,12 +127,13 @@ public class ExportQuantities
 		QueryMain m = new QueryMain();
 		m.connectService();
 		
-		HashSet<Storey> storeys = m.getStoreysFromServer(projectName, null);
+		HashSet<ObjectContainer> storeys = m.getStoreysFromServer(projectName, null);
 		ExcelSheet sheet = new ExcelSheet("demo/phases.xls", "demo/phases_new.xls", "Quantities");
 		
 		// get first storey object
-		Iterator<Storey> it = storeys.iterator();
-		Storey s = it.next();
+		// again this will only work if the storey links its objects, check the BIM server
+		Iterator<ObjectContainer> it = storeys.iterator();
+		ObjectContainer s = it.next();
 		
 		HashMap<String, Double> lengthPerPhase = new HashMap<String, Double>();
 		List<SDataObject> walls = s.getObjectsByType("IfcWallStandardCase");
@@ -121,5 +186,5 @@ public class ExportQuantities
 	}
 	
 	// this uses the example project name, please exchange it with the name of your group's project
-	private static final String projectName = "Demo Simple";
+	private static final String projectName = "Test";
 }
