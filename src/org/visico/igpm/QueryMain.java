@@ -2,7 +2,6 @@ package org.visico.igpm;
 
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import org.bimserver.client.BimServerClient;
@@ -20,8 +19,8 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class QueryMain {
 	
-	private static String name = "j.mom@student.utwente.nl";
-	private static String password = "BIM";
+	private static String name = "test@test.com";
+	private static String password = "Test";
 	private static String server = "http://ctwbisql1.ctw.utwente.nl:8080/bimserver/soap";
 
 
@@ -83,36 +82,7 @@ public class QueryMain {
         return project;
 	}
 	
-	public HashSet<ObjectContainer> getStoreysFromServer(String projectName, Long revisionId) throws ServerException, UserException 
-	{
-		 
-		return getStoreysFromServer(getProject(projectName), revisionId);
-	}
 	
-	private HashSet<ObjectContainer> getStoreysFromServer(SProject project, Long revisionId) throws ServerException, UserException
-	{
-		HashSet<ObjectContainer> storeys = new HashSet<ObjectContainer>();
-		
-	
-		if (project == null)
-			throw new RuntimeException("No project");
-		
-		// if the revision id is null use the latest revision
-		if (revisionId == null)
-			revisionId = project.getLastRevisionId();
-    	
-    	// get storey elements
-        List<SDataObject> objects = 
-        	service.getDataObjectsByType(revisionId, "IfcBuildingStorey");
-        
-        for (SDataObject s : objects)
-        {
-        	ObjectContainer storey = new ObjectContainer(s, service, revisionId);
-        	storeys.add(storey);
-        }
-		
-		return storeys;
-	}
 
 	
 	List<String> boguis = new ArrayList<String>();
