@@ -19,6 +19,11 @@ import org.bimserver.shared.exceptions.UserException;
 
 
 public class QueryMain {
+	
+	private static String name = "j.mom@student.utwente.nl";
+	private static String password = "BIM";
+	private static String server = "http://ctwbisql1.ctw.utwente.nl:8080/bimserver/soap";
+
 
 	public long getRoid() {
 		return roid;
@@ -44,8 +49,8 @@ public class QueryMain {
 				PluginManager pluginManager = new PluginManager();
 				bimServerClient = new BimServerClient(pluginManager);
 		        
-		        bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("test@test.com", "Test"));
-		        bimServerClient.connectSoap("http://ctwbisql1.ctw.utwente.nl:8080/bimserver/soap", false);
+		        bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo(name, password));
+		        bimServerClient.connectSoap(server, false);
 		        service = bimServerClient.getServiceInterface();
 		    } catch (ConnectionException e) {
 		        e.printStackTrace();
@@ -115,5 +120,6 @@ public class QueryMain {
 	
 	long roid = 0;
 	ServiceInterface service; 
-
+	
+	
 }

@@ -18,6 +18,7 @@ import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
 import org.bimserver.interfaces.objects.SReferenceDataValue;
 import org.bimserver.interfaces.objects.SSimpleDataValue;
+import org.bimserver.shared.ServiceInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -27,13 +28,18 @@ public class PropertyObject
 	private SDataObject object;
 	private ObjectContainer container;
 	
-	
+	public PropertyObject(SDataObject object, ServiceInterface service, long revisionId) throws ServerException, UserException
+	{
+		this.object = object;
+		getPropertiesNoContainer(service, revisionId);
+	}
 	
 
 	public PropertyObject(SDataObject object, ObjectContainer storey) throws ServerException, UserException
 	{
 		this.object = object;
 		this.container = storey;
+		
 		
 		getProperties();
 	}
@@ -89,6 +95,93 @@ public class PropertyObject
 																 SDataObject propertySingle = 
 																		 	container.getService().getDataObjectByOid(
 																		 			container.getRevisionId(), 
+																		 			propertyObjectId,
+																		 			"IfcPropertySingleValue");
+															 
+																 List<SDataValue> fields = propertySingle.getValues();
+																 String name = null;
+																 String val = null;
+																 
+																 for (SDataValue field : fields)
+																 {
+																	 if (field instanceof SSimpleDataValue)
+																	 {
+																		SSimpleDataValue listv = (SSimpleDataValue)field;
+																		if (listv.getFieldName().equals("Name"))
+																			name = listv.getStringValue();
+																		else if(listv.getFieldName().equals("NominalValue"))
+																			val = listv.getStringValue();
+																	 }
+																 }
+																 if (name != null && val != null)
+																	 dimensions.put(name, val);
+															 }
+															 
+														 }
+													 }
+												 }
+											 }
+										 }
+									 }
+								 }
+							 }
+					 }			 
+				}
+	   		}
+	   	}
+	}
+	
+	private void getPropertiesNoContainer(ServiceInterface service, long revisionId ) throws ServerException, UserException 
+	{
+		List<SDataValue> values = object.getValues();
+   	 
+	   	for (SDataValue value : values)
+	   	{
+	   		if (value.getFieldName().equals("IsDefinedBy"))
+	   		{
+	   			if (value instanceof SListDataValue) 
+				 { 
+					 SListDataValue listValue = (SListDataValue)value;
+					 List<SDataValue> valueList = listValue.getValues();
+					 
+					 for (SDataValue data : valueList)
+					 {
+						if (data instanceof SReferenceDataValue)
+							 {
+								 String propertySetRelGuid = ((SReferenceDataValue)data).getGuid();
+								 SDataObject propertySetRel = service.getDataObjectByGuid(revisionId, propertySetRelGuid);
+								 
+								 //System.out.println(propertySetRel.getType() + " " + propertySetRel.getName());
+								 List<SDataValue> relProperties = propertySetRel.getValues();
+								 
+								 for (SDataValue propertyrel : relProperties)
+								 {
+									// System.out.println(property.getFieldName());
+									 if (propertyrel.getFieldName().equals("RelatingPropertyDefinition"))
+									 {
+										 if (propertyrel instanceof SReferenceDataValue)
+										 {
+											 String propertySetGuid = ((SReferenceDataValue)propertyrel).getGuid();
+											 SDataObject propertySet = service.getDataObjectByGuid(revisionId, propertySetGuid);
+											 
+											 List<SDataValue> propertySetList = propertySet.getValues();
+											 
+											 for (SDataValue propertyList : propertySetList)
+											 {
+												 if (propertyList.getFieldName().equals("HasProperties"))
+												 {
+													 if (propertyList instanceof SListDataValue)
+													 {
+														 List<SDataValue> propertyListValue = ((SListDataValue) propertyList).getValues();
+														 
+														 for (SDataValue property : propertyListValue)
+														 {
+															 if (property instanceof SReferenceDataValue)
+															 {
+																 Long propertyObjectId = ((SReferenceDataValue)property).getOid();
+																 SDataObject propertySingle = 
+																		 	service.getDataObjectByOid(
+																		 			revisionId, 
 																		 			propertyObjectId,
 																		 			"IfcPropertySingleValue");
 															 
