@@ -22,10 +22,12 @@ public class ExportQuantities
 {
 	// this uses the example project name, please exchange it with the name of your group's project
 	private static final String projectName = "Test";
+	private static ExcelSheet sheet;
 		
 	public static void main(String[] args) throws ServerException, UserException, RowsExceededException, BiffException, WriteException, IOException
 	{
-		
+		sheet = new ExcelSheet("demo/phases.xls", "demo/phases_new.xls", "Quantities");
+		 
 		//implement a timer
 		Long startTime = new Long(System.currentTimeMillis());
 		
@@ -35,6 +37,8 @@ public class ExportQuantities
 		
 		Long time = (System.currentTimeMillis() - startTime) / 1000;
 		System.out.println("Overall duration "+ time.toString() + " seconds!");
+		
+		sheet.writeAndClose();
 	}
 	
 	
@@ -166,7 +170,7 @@ public class ExportQuantities
 		
 		List<SDataObject> storeys = service.getDataObjectsByType(revisionId, "IfcBuildingStorey");
 		
-		ExcelSheet sheet = new ExcelSheet("demo/phases.xls", "demo/phases_new.xls", "Quantities");
+		
 		
 		// get the first storey object and wrap it with a SpatialStructureObject, change number according to your storeys. Browse 
 		// your model using the webservice browser
@@ -220,7 +224,7 @@ public class ExportQuantities
 			row++;
 		}
 		
-		sheet.writeAndClose();
+		
 		
 		Long time = (System.currentTimeMillis() - startTime) / 1000;
 		System.out.println("query took "+ time.toString() + " seconds!");
