@@ -2,246 +2,44 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="dep/activation.jar"/>
-	<classpathentry kind="lib" path="dep/antlr-2.7.7.jar"/>
-	<classpathentry kind="lib" path="dep/antlr-3.1.1-runtime.jar"/>
-	<classpathentry kind="lib" path="dep/antlr-3.1.1.jar"/>
-	<classpathentry kind="lib" path="dep/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="dep/asm-3.3.1.jar"/>
-	<classpathentry kind="lib" path="dep/asm-3.3.jar"/>
-	<classpathentry kind="lib" path="dep/catalina.jar"/>
-	<classpathentry kind="lib" path="dep/com.sun.el_1.0.0.v201004190952.jar"/>
-	<classpathentry kind="lib" path="dep/com.sun.el-2.2.0.v201108011116.jar"/>
-	<classpathentry kind="lib" path="dep/commons-beanutils-1.8.3.jar"/>
-	<classpathentry kind="lib" path="dep/commons-beanutils-bean-collections-1.8.3.jar"/>
-	<classpathentry kind="lib" path="dep/commons-beanutils-core-1.8.3.jar"/>
-	<classpathentry kind="lib" path="dep/commons-codec-1.3.jar"/>
-	<classpathentry kind="lib" path="dep/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="dep/commons-fileupload-1.2.1.jar"/>
 	<classpathentry kind="lib" path="dep/commons-io-1.4.jar"/>
-	<classpathentry kind="lib" path="dep/commons-lang-2.4.jar"/>
-	<classpathentry kind="lib" path="dep/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="dep/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="dep/commons-pool-1.5.2.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-2.4.4.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-2.6.2.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-manifest.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-services-sts-core-2.6.2.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-services-wsn-api-2.6.2.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-services-wsn-core-2.6.2.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-xjc-boolean-2.4.0.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-xjc-boolean-2.6.0.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-xjc-bug671-2.4.0.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-xjc-bug671-2.6.0.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-xjc-dv-2.4.0.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-xjc-dv-2.6.0.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-xjc-runtime-2.6.0.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-xjc-ts-2.4.0.jar"/>
-	<classpathentry kind="lib" path="dep/cxf-xjc-ts-2.6.0.jar"/>
-	<classpathentry kind="lib" path="dep/ecj-3.6.jar"/>
-	<classpathentry kind="lib" path="dep/ehcache-core-2.5.1.jar"/>
-	<classpathentry kind="lib" path="dep/FastInfoset-1.2.9.jar"/>
-	<classpathentry kind="lib" path="dep/geoapi-2.3-M1.jar"/>
-	<classpathentry kind="lib" path="dep/geoapi-pending-2.3-M1.jar"/>
-	<classpathentry kind="lib" path="dep/geronimo-activation_1.1_spec-1.1.jar"/>
-	<classpathentry kind="lib" path="dep/geronimo-annotation_1.0_spec-1.1.1.jar"/>
-	<classpathentry kind="lib" path="dep/geronimo-javamail_1.4_spec-1.7.1.jar"/>
-	<classpathentry kind="lib" path="dep/geronimo-jaxws_2.2_spec-1.1.jar"/>
-	<classpathentry kind="lib" path="dep/geronimo-jms_1.1_spec-1.1.1.jar"/>
-	<classpathentry kind="lib" path="dep/geronimo-servlet_2.5_spec-1.1.2.jar"/>
-	<classpathentry kind="lib" path="dep/geronimo-stax-api_1.0_spec-1.0.1.jar"/>
-	<classpathentry kind="lib" path="dep/geronimo-ws-metadata_2.0_spec-1.1.3.jar"/>
-	<classpathentry kind="lib" path="dep/gson-2.2.2.jar"/>
-	<classpathentry kind="lib" path="dep/guava-11.0.1.jar"/>
+	<classpathentry kind="lib" path="dep/cxf-2.7.3.jar"/>
+	<classpathentry kind="lib" path="dep/gson-2.2.4.jar"/>
 	<classpathentry kind="lib" path="dep/guava-13.0.1.jar"/>
+	<classpathentry kind="lib" path="dep/httpasyncclient-4.0-beta3.jar"/>
 	<classpathentry kind="lib" path="dep/httpclient-4.2.1.jar"/>
-	<classpathentry kind="lib" path="dep/httpcore-4.2.1.jar"/>
-	<classpathentry kind="lib" path="dep/ifcNamespaces.jar"/>
-	<classpathentry kind="lib" path="dep/isorelax-20030108.jar"/>
-	<classpathentry kind="lib" path="dep/java-getopt-1.0.13.jar"/>
+	<classpathentry kind="lib" path="dep/httpcore-4.2.2.jar"/>
+	<classpathentry kind="lib" path="dep/httpcore-nio-4.2.2.jar"/>
+	<classpathentry kind="lib" path="dep/httpmime-4.2.2.jar"/>
 	<classpathentry kind="lib" path="dep/javassist.jar"/>
-	<classpathentry kind="lib" path="dep/javax.el_2.1.0.v201004190952.jar"/>
-	<classpathentry kind="lib" path="dep/javax.el-2.2.0.v201108011116.jar"/>
-	<classpathentry kind="lib" path="dep/javax.servlet.jsp_2.1.0.v201004190952.jar"/>
-	<classpathentry kind="lib" path="dep/javax.servlet.jsp-2.2.0.v201112011158.jar"/>
-	<classpathentry kind="lib" path="dep/javax.servlet.jsp.jstl_1.2.0.v201004190952.jar"/>
-	<classpathentry kind="lib" path="dep/javax.servlet.jsp.jstl-1.2.0.v201105211821.jar"/>
-	<classpathentry kind="lib" path="dep/jaxb-api-2.2.3.jar"/>
-	<classpathentry kind="lib" path="dep/jaxb-api-2.2.6.jar"/>
-	<classpathentry kind="lib" path="dep/jaxb-impl-2.2.4-1.jar"/>
-	<classpathentry kind="lib" path="dep/jaxb-impl-2.2.5.jar"/>
-	<classpathentry kind="lib" path="dep/jaxb-xjc-2.2.4-1.jar"/>
-	<classpathentry kind="lib" path="dep/jaxb-xjc-2.2.5.jar"/>
-	<classpathentry kind="lib" path="dep/jdom-1.0.jar"/>
-	<classpathentry kind="lib" path="dep/je-5.0.34.jar"/>
-	<classpathentry kind="lib" path="dep/je-5.0.58.jar"/>
-	<classpathentry kind="lib" path="dep/jettison-1.0.1.jar"/>
-	<classpathentry kind="lib" path="dep/jettison-1.3.2.jar"/>
-	<classpathentry kind="lib" path="dep/jettison-1.3.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-ajp-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-ajp-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-annotations-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-annotations-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-client-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-client-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-continuation-7.4.5.v20110725.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-continuation-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-continuation-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-deploy-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-deploy-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-http-7.4.5.v20110725.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-http-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-http-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-io-7.4.5.v20110725.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-io-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-io-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-jmx-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-jmx-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-jndi-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-jndi-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-jsp-2.1-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-overlay-deployer-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-overlay-deployer-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-plus-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-plus-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-policy-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-policy-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-rewrite-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-rewrite-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-security-7.4.5.v20110725.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-security-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-security-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-server-7.4.5.v20110725.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-server-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-server-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-servlet-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-servlet-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-servlets-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-servlets-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-util-7.4.5.v20110725.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-util-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-util-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-webapp-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-webapp-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-websocket-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-websocket-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-xml-7.5.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="dep/jetty-xml-8.1.7.v20120910.jar"/>
-	<classpathentry kind="lib" path="dep/jna.jar"/>
-	<classpathentry kind="lib" path="dep/joda-time-1.6.2.jar"/>
-	<classpathentry kind="lib" path="dep/joda-time-1.6.jar"/>
-	<classpathentry kind="lib" path="dep/jra-1.0-alpha-4.jar"/>
-	<classpathentry kind="lib" path="dep/js-1.7R2.jar"/>
-	<classpathentry kind="lib" path="dep/json.jar"/>
-	<classpathentry kind="lib" path="dep/jsr173_1.0_api.jar"/>
-	<classpathentry kind="lib" path="dep/jsr311-api-1.1.1.jar"/>
-	<classpathentry kind="lib" path="dep/junit-4.8.2.jar"/>
+	<classpathentry kind="lib" path="dep/jettison-1.3.3.jar"/>
 	<classpathentry kind="lib" path="dep/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="dep/mail.jar"/>
-	<classpathentry kind="lib" path="dep/mimepull-1.4.jar"/>
-	<classpathentry kind="lib" path="dep/mimepull-1.7.jar"/>
-	<classpathentry kind="lib" path="dep/msv-core-2011.1.jar"/>
-	<classpathentry kind="lib" path="dep/neethi-3.0.1.jar"/>
 	<classpathentry kind="lib" path="dep/neethi-3.0.2.jar"/>
-	<classpathentry kind="lib" path="dep/oauth-20100527.jar"/>
-	<classpathentry kind="lib" path="dep/oauth-provider-20100527.jar"/>
-	<classpathentry kind="lib" path="dep/openmali.jar"/>
-	<classpathentry kind="lib" path="dep/opensaml-2.5.1-1.jar"/>
-	<classpathentry kind="lib" path="dep/openws-1.4.2-1.jar"/>
-	<classpathentry kind="lib" path="dep/org.apache.jasper.glassfish_2.1.0.v201007080150.jar"/>
-	<classpathentry kind="lib" path="dep/org.apache.jasper.glassfish-2.2.2.v201112011158.jar"/>
-	<classpathentry kind="lib" path="dep/org.apache.taglibs.standard.glassfish_1.2.0.v201004190952.jar"/>
-	<classpathentry kind="lib" path="dep/org.apache.taglibs.standard.glassfish-1.2.0.v201112081803.jar"/>
 	<classpathentry kind="lib" path="dep/org.eclipse.core.contenttype_3.4.200.v20120523-2004.jar"/>
 	<classpathentry kind="lib" path="dep/org.eclipse.core.jobs_3.5.200.v20120521-2346.jar"/>
 	<classpathentry kind="lib" path="dep/org.eclipse.core.resources_3.8.0.v20120522-2034.jar"/>
 	<classpathentry kind="lib" path="dep/org.eclipse.core.runtime_3.8.0.v20120521-2346.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf_2.6.0.v20110606-0949.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf_2.6.0.v20120608-0554.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.codegen_2.6.0.v20110606-0949.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.codegen_2.8.0.v20120608-0554.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.codegen.ecore_2.7.0.v20110606-0949.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.codegen.ecore_2.8.0.v20120608-0554.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.common_2.7.0.v20110605-0747.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.common_2.8.0.v20120606-0717.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.compare.diff_1.2.0.v20110607-2028.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.compare.match_1.2.0.v20110607-2028.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.ecore_2.7.0.v20110605-0747.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.ecore_2.8.0.v20120606-0717.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.ecore.xmi_2.7.0.v20110520-1406.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.emf.ecore.xmi_2.8.0.v20120606-0717.jar"/>
+	<classpathentry kind="lib" path="dep/org.eclipse.emf_2.6.0.v20130125-0826.jar"/>
+	<classpathentry kind="lib" path="dep/org.eclipse.emf.common_2.8.0.v20130125-0546.jar"/>
+	<classpathentry kind="lib" path="dep/org.eclipse.emf.ecore_2.8.3.v20130125-0546.jar"/>
+	<classpathentry kind="lib" path="dep/org.eclipse.emf.ecore.xmi_2.8.1.v20130125-0546.jar"/>
 	<classpathentry kind="lib" path="dep/org.eclipse.equinox.common_3.6.100.v20120522-1841.jar"/>
 	<classpathentry kind="lib" path="dep/org.eclipse.equinox.preferences_3.5.0.v20120522-1841.jar"/>
 	<classpathentry kind="lib" path="dep/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.jdt.core-3.7.1.jar"/>
 	<classpathentry kind="lib" path="dep/org.eclipse.osgi_3.8.0.v20120529-1548.jar"/>
-	<classpathentry kind="lib" path="dep/org.eclipse.xsd_2.7.0.v20110606-0949.jar"/>
-	<classpathentry kind="lib" path="dep/protocolbuffers.jar"/>
-	<classpathentry kind="lib" path="dep/quartz-1.8.3.jar"/>
-	<classpathentry kind="lib" path="dep/relaxngDatatype-20020414.jar"/>
-	<classpathentry kind="lib" path="dep/resolver.jar"/>
-	<classpathentry kind="lib" path="dep/rome-1.0.jar"/>
-	<classpathentry kind="lib" path="dep/saaj-api-1.3.4.jar"/>
-	<classpathentry kind="lib" path="dep/saaj-impl-1.3.12.jar"/>
-	<classpathentry kind="lib" path="dep/saaj-impl-1.3.18.jar"/>
-	<classpathentry kind="lib" path="dep/serializer-2.7.1.jar"/>
-	<classpathentry kind="lib" path="dep/servlet-api-2.5.jar"/>
-	<classpathentry kind="lib" path="dep/servlet-api-3.0.jar"/>
 	<classpathentry kind="lib" path="dep/slf4j-api-1.6.2.jar"/>
 	<classpathentry kind="lib" path="dep/slf4j-log4j12-1.6.2.jar"/>
-	<classpathentry kind="lib" path="dep/spring-aop-3.0.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-aop-3.0.7.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-asm-3.0.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-asm-3.0.7.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-beans-3.0.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-beans-3.0.7.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-context-3.0.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-context-3.0.7.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-core-3.0.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-core-3.0.7.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-expression-3.0.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-expression-3.0.7.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-jms-3.0.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-jms-3.0.7.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-tx-3.0.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-tx-3.0.7.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-web-3.0.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/spring-web-3.0.7.RELEASE.jar"/>
-	<classpathentry kind="lib" path="dep/stax2-api-3.1.1.jar"/>
-	<classpathentry kind="lib" path="dep/stringtemplate-3.2.jar"/>
-	<classpathentry kind="lib" path="dep/tar.jar"/>
-	<classpathentry kind="lib" path="dep/tomcat-coyote.jar"/>
-	<classpathentry kind="lib" path="dep/tomcat-juli.jar"/>
-	<classpathentry kind="lib" path="dep/tomcat-util.jar"/>
-	<classpathentry kind="lib" path="dep/velocity-1.7.jar"/>
-	<classpathentry kind="lib" path="dep/woodstox-core-asl-4.1.1.jar"/>
-	<classpathentry kind="lib" path="dep/woodstox-core-asl-4.1.4.jar"/>
 	<classpathentry kind="lib" path="dep/wsdl4j-1.6.2.jar"/>
-	<classpathentry kind="lib" path="dep/wss4j-1.6.3.jar"/>
-	<classpathentry kind="lib" path="dep/wss4j-1.6.7.jar"/>
-	<classpathentry kind="lib" path="dep/xalan-2.7.1.jar"/>
-	<classpathentry kind="lib" path="dep/xbean_xpath.jar"/>
-	<classpathentry kind="lib" path="dep/xbean.jar"/>
-	<classpathentry kind="lib" path="dep/xml-resolver-1.2.jar"/>
-	<classpathentry kind="lib" path="dep/xmlbeans-2.4.0.jar"/>
-	<classpathentry kind="lib" path="dep/xmlbeans-2.5.0.jar"/>
-	<classpathentry kind="lib" path="dep/xmlbeans-qname.jar"/>
-	<classpathentry kind="lib" path="dep/xmlpublic.jar"/>
-	<classpathentry kind="lib" path="dep/xmlschema-core-2.0.1.jar"/>
 	<classpathentry kind="lib" path="dep/xmlschema-core-2.0.3.jar"/>
-	<classpathentry kind="lib" path="dep/xmlsec-1.4.5.jar"/>
-	<classpathentry kind="lib" path="dep/xmlsec-1.5.2.jar"/>
-	<classpathentry kind="lib" path="dep/xmltooling-1.3.2-1.jar"/>
-	<classpathentry kind="lib" path="dep/xsdlib-2010.1.jar"/>
-	<classpathentry kind="lib" path="lib/bimserver-1.1.0-2012-05-11-buildingSMARTLibrary.jar"/>
-	<classpathentry kind="lib" path="lib/bimserver-1.1.0-2012-05-11-client-lib.jar"/>
-	<classpathentry kind="lib" path="lib/bimserver-1.1.0-2012-05-11-emf.jar"/>
-	<classpathentry kind="lib" path="lib/bimserver-1.1.0-2012-05-11-ifc.jar"/>
-	<classpathentry kind="lib" path="lib/bimserver-1.1.0-2012-05-11-ifcplugins.jar"/>
-	<classpathentry kind="lib" path="lib/bimserver-1.1.0-2012-05-11-plugins.jar"/>
-	<classpathentry kind="lib" path="lib/bimserver-1.1.0-2012-05-11-shared.jar"/>
-	<classpathentry kind="lib" path="lib/bimserver-1.1.0-2012-05-11-utils.jar"/>
-	<classpathentry kind="lib" path="lib/bimserver-1.1.0-2012-05-11.jar"/>
+	<classpathentry kind="lib" path="lib/bimserver-1.3.0-RC2-2013-11-21-buildingSMARTLibrary.jar"/>
+	<classpathentry kind="lib" path="lib/bimserver-1.3.0-RC2-2013-11-21-client-lib.jar"/>
+	<classpathentry kind="lib" path="lib/bimserver-1.3.0-RC2-2013-11-21-ifc.jar"/>
+	<classpathentry kind="lib" path="lib/bimserver-1.3.0-RC2-2013-11-21-ifcplugins.jar"/>
+	<classpathentry kind="lib" path="lib/bimserver-1.3.0-RC2-2013-11-21-shared.jar"/>
+	<classpathentry kind="lib" path="lib/bimserver-1.3.0-RC2-2013-11-21-utils.jar"/>
+	<classpathentry kind="lib" path="lib/bimserver-1.3.0-RC2-2013-11-21.jar"/>
 	<classpathentry kind="lib" path="lib/jxl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

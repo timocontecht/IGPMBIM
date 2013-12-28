@@ -6,25 +6,37 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bimserver.client.ClientIfcModel;
+import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
+import org.bimserver.models.ifc2x3tc1.IfcColumn;
+import org.bimserver.models.ifc2x3tc1.IfcDoor;
+import org.bimserver.models.ifc2x3tc1.IfcObject;
+import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
+import org.bimserver.models.ifc2x3tc1.IfcRoof;
+import org.bimserver.models.ifc2x3tc1.IfcSlab;
+import org.bimserver.models.ifc2x3tc1.IfcStair;
+import org.bimserver.models.ifc2x3tc1.IfcWall;
+import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
+import org.bimserver.models.ifc2x3tc1.IfcWindow;
+import org.bimserver.plugins.services.BimServerClientException;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
+
 import jxl.read.biff.BiffException;
 import jxl.write.Label;
 import jxl.write.Number;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-import org.bimserver.interfaces.objects.SDataObject;
-import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.shared.ServiceInterface;
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.UserException;
 
 public class ExportQuantities 
 {
 	// this uses the example project name, please exchange it with the name of your group's project
-	private static final String projectName = "Test";
+	private static final String projectName = "Tester";
 	private static ExcelSheet sheet;
 		
-	public static void main(String[] args) throws ServerException, UserException, RowsExceededException, BiffException, WriteException, IOException
+	public static void main(String[] args) throws ServerException, UserException, RowsExceededException, BiffException, WriteException, IOException, BimServerClientException, PublicInterfaceNotFoundException
 	{
 		sheet = new ExcelSheet("demo/phases.xls", "demo/phases_new.xls", "Quantities");
 		 
@@ -42,65 +54,37 @@ public class ExportQuantities
 	}
 	
 	
-	public static void queryAll() throws ServerException, UserException 
+	public static void queryAll() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException 
 	{
 		//implement a timer
 		Long startTime = new Long(System.currentTimeMillis());
 		
 		QueryMain m = new QueryMain();
-		m.connectService();
+		ClientIfcModel model = m.getModel(projectName);
 		
-		ServiceInterface service = m.getService();
-		SProject project = m.getProject(projectName);
+		List<IfcObject> objects = new ArrayList<IfcObject>();
 		
-		long revisionId = project.getLastRevisionId();
-    	
-    	// get storey elements
-       List<SDataObject> objects = new ArrayList<SDataObject>();
+		objects.addAll(model.getAllWithSubTypes(IfcWallStandardCase.class));
+		objects.addAll(model.getAllWithSubTypes(IfcColumn.class));
+		objects.addAll(model.getAllWithSubTypes(IfcRoof.class));
+		objects.addAll(model.getAllWithSubTypes(IfcStair.class));
+		objects.addAll(model.getAllWithSubTypes(IfcWindow.class));
+		objects.addAll(model.getAllWithSubTypes(IfcSlab.class));
+		objects.addAll(model.getAllWithSubTypes(IfcColumn.class));
+		objects.addAll(model.getAllWithSubTypes(IfcWall.class));
+		objects.addAll(model.getAllWithSubTypes(IfcDoor.class));
+	
        
-       List<SDataObject> temp = service.getDataObjectsByType(revisionId, "IfcDoor");
-       if (temp != null)
-    	   objects.addAll(temp);
-       
-       temp = service.getDataObjectsByType(revisionId, "IfcColumn");
-       if (temp != null)
-    	   objects.addAll(temp);
-       
-       temp = service.getDataObjectsByType(revisionId, "IfcRoof");
-       if (temp != null)
-    	   objects.addAll(temp);
-       
-       temp = service.getDataObjectsByType(revisionId, "IfcStair");
-       if (temp != null)
-    	   objects.addAll(temp);
-       
-       temp = service.getDataObjectsByType(revisionId, "IfcWindow");
-       if (temp != null)
-    	   objects.addAll(temp);
-       
-       temp = service.getDataObjectsByType(revisionId, "IfcSlab");
-       if (temp != null)
-    	   objects.addAll(temp);
-       
-       // I commented this out. In some models the IfcWallStandardCase object is not handled well
-       // by the BIM server (see also what happens when you browse the server.  As a work around
-       // it seems as if IfcWallStandardCase objects can be obtained through the 
       
-       
-       //temp = service.getDataObjectsByType(revisionId, "IfcWallStandardCase");
-      // if (temp != null)
-    	//   objects.addAll(temp);
-       	
-			
-			Iterator<SDataObject> objectIt = objects.iterator();
+			Iterator<IfcObject> objectIt = objects.iterator();
 			
 			
 			
 			while (objectIt.hasNext())
 			{
-				SDataObject object = objectIt.next();
+				IfcObject object = objectIt.next();
 				
-				PropertyObject qo = new PropertyObject(object, m.getService(), revisionId);
+				PropertyObject qo = new PropertyObject(object);
 				qo.printProperties();
 			}
 		
@@ -109,45 +93,30 @@ public class ExportQuantities
 		
 	}
 
-	public static void queryAllByStorey() throws ServerException, UserException 
+	public static void queryAllByStorey() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException 
 	{
-			//implement a timer
+		//implement a timer
 			Long startTime = new Long(System.currentTimeMillis());
 			
 			QueryMain m = new QueryMain();
-			m.connectService();
-			
-			ServiceInterface service = m.getService();
-			SProject project = m.getProject(projectName);
-			
-			long revisionId = project.getLastRevisionId();
+			ClientIfcModel model = m.getModel(projectName);
 	    	
-	    	// get storey elements
-			List<SDataObject> objects = new ArrayList<SDataObject>();
+			List<IfcBuildingStorey> objects = model.getAllWithSubTypes(IfcBuildingStorey.class);
 	       
-			List<SDataObject> temp = service.getDataObjectsByType(revisionId, "IfcBuildingStorey");
-			if (temp != null)
-				objects.addAll(temp);
-	       
-			Iterator<SDataObject> objectIt = objects.iterator();
-			
-			while (objectIt.hasNext())
+			for (IfcBuildingStorey storey : objects)
 			{
-				SDataObject storey = objectIt.next();
-				System.out.println("new storey");
-				PropertyObject qo = new PropertyObject(storey, m.getService(), revisionId);
-				qo.printProperties();
-				
 				System.out.println();
 				System.out.println();
+				System.out.println(storey.getName());
 				
-				SpatialStructureObject o = new SpatialStructureObject(storey, service, revisionId);
-				
-				Iterator<SDataObject> conStrucIt = o.getContainedStructures().iterator();
-				while (conStrucIt.hasNext())
+				List<IfcRelContainedInSpatialStructure> contained = storey.getContainsElements();
+				for (IfcRelContainedInSpatialStructure c : contained)
 				{
-					qo = new PropertyObject(conStrucIt.next(), m.getService(), revisionId);
-					qo.printProperties();
+					for (IfcObject el : c.getRelatedElements())
+					{
+						PropertyObject qo = new PropertyObject(el);
+						qo.printProperties();
+					}
 				}
 			}
 			
@@ -155,58 +124,63 @@ public class ExportQuantities
 			System.out.println("query took "+ time.toString() + " seconds!");
 	}
 	
-	public static void exportWallAreaPerPhase() throws ServerException, UserException, BiffException, IOException, RowsExceededException, WriteException
+	public static void exportWallAreaPerPhase() throws ServerException, UserException, BiffException, IOException, RowsExceededException, WriteException, BimServerClientException, PublicInterfaceNotFoundException
 	{
 		//implement a timer
 		Long startTime = new Long(System.currentTimeMillis());
 				
 		QueryMain m = new QueryMain();
-		m.connectService();
+		ClientIfcModel model = m.getModel(projectName);
+    	
+		List<IfcBuildingStorey> objects = model.getAllWithSubTypes(IfcBuildingStorey.class);
+       
+		// get the first storey object
+		IfcBuildingStorey storey = objects.get(0);
 		
-		ServiceInterface service = m.getService();
-		SProject project = m.getProject(projectName);
-		long revisionId = project.getLastRevisionId();
-		
-		
-		List<SDataObject> storeys = service.getDataObjectsByType(revisionId, "IfcBuildingStorey");
-		
-		
-		
-		// get the first storey object and wrap it with a SpatialStructureObject, change number according to your storeys. Browse 
-		// your model using the webservice browser
-		SpatialStructureObject spatialStruc = new SpatialStructureObject(storeys.get(0), service, revisionId);
-		
+		System.out.println();
+		System.out.println();
+		System.out.println(storey.getName());
+			
+		// create the map to hold the length per phase
 		HashMap<String, Double> lengthPerPhase = new HashMap<String, Double>();
-		
-		List<SDataObject> walls = spatialStruc.getContainedStructuresByType("IfcWallStandardCase");
-		Iterator<SDataObject> wallit = walls.iterator();
-		
-		while (wallit.hasNext())
+				
+		// get the first storey element 
+		List<IfcRelContainedInSpatialStructure> contained = storey.getContainsElements();
+		for (IfcRelContainedInSpatialStructure c : contained)
 		{
-			SDataObject wall = wallit.next();
-			PropertyObject qo = new PropertyObject(wall, service, revisionId);
+		
 			
-			String phase = qo.getQuantity("Phase Created");
-			String lengthStr = qo.getQuantity("Length");
-			Double length = Double.parseDouble(lengthStr);
-			
-			// no property set, ignore wall
-			if (phase != null)
+			for (IfcObject el : c.getRelatedElements())
 			{
-				// already a wall with this phase: add length to value
-				if (lengthPerPhase.containsKey(phase))
+				// select only walls
+				if (el instanceof IfcWallStandardCase || el instanceof IfcWall)
 				{
-					Double aggregatedLength = lengthPerPhase.get(phase);
-					aggregatedLength = aggregatedLength + length;
-					lengthPerPhase.put(phase, aggregatedLength);
+					PropertyObject qo = new PropertyObject(el);
+					
+					String phase = qo.getQuantity("Phase Created");
+					String lengthStr = qo.getQuantity("Length");
+					Double length = Double.parseDouble(lengthStr);
+					
+					// no property set, ignore wall
+					if (phase != null)
+					{
+						// already a wall with this phase: add length to value
+						if (lengthPerPhase.containsKey(phase))
+						{
+							Double aggregatedLength = lengthPerPhase.get(phase);
+							aggregatedLength = aggregatedLength + length;
+							lengthPerPhase.put(phase, aggregatedLength);
+						}
+						// create new HashMap entry
+						else
+						{
+							lengthPerPhase.put(phase, length);
+						}
+					}		
 				}
-				// create new HashMap entry
-				else
-				{
-					lengthPerPhase.put(phase, length);
-				}
-			}		
+			}
 		}
+				
 		
 		// write HashMap to Excel
 		Iterator<String> keyIt = lengthPerPhase.keySet().iterator();
