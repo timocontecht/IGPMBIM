@@ -25,9 +25,9 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class QueryMain {
 	
-	private static String name = "baron.timo@gmail.com";
-	private static String password = "Powerman";
-	private static String server = "http://visico.org:8080/bimserver";
+	private static String name = "bim.tst.user@gmail.com";
+	private static String password = "letstestbim";
+	private static String server = "http://ctwbisql1.ctw.utwente.nl:8080/bimserver/";
 	
 	BimServerClient client = null;
 	private List<SProject> projects = null;
@@ -37,13 +37,7 @@ public class QueryMain {
 		for (SProject project : projects) {
             if (name.equals(project.getName()))
             	return project;
-            else
-            {
-            	System.out.println("Project with this name does not exist");
-            	return null;
-            }
 		}
-		
 		System.out.println("No projects available");
 		return null;
 	}
@@ -52,7 +46,7 @@ public class QueryMain {
 	{
 		SProject p = getProject(projectName);
 		System.out.println(p.getRevisions().toString());
-		return client.getModel(p.getOid(), p.getRevisions().get(1), true);
+		return client.getModel(p.getOid(), p.getRevisions().get(0), true);
 		
 	}
 
@@ -79,7 +73,7 @@ public class QueryMain {
 
 	public static void main(String[] args) {
 		QueryMain m = new QueryMain();
-		SProject p = m.getProject("Test");
+		SProject p = m.getProject("tst010214");
 		System.out.println(p.getName());
 	}
 	

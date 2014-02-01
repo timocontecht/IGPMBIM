@@ -33,37 +33,37 @@ import jxl.write.biff.RowsExceededException;
 public class ExportQuantities 
 {
 	// this uses the example project name, please exchange it with the name of your group's project
-	private static final String projectName = "Tester";
+	private static final String projectName = "tst010214";
 	private static ExcelSheet sheet;
-		
+
 	public static void main(String[] args) throws ServerException, UserException, RowsExceededException, BiffException, WriteException, IOException, BimServerClientException, PublicInterfaceNotFoundException
 	{
 		sheet = new ExcelSheet("demo/phases.xls", "demo/phases_new.xls", "Quantities");
-		 
+
 		//implement a timer
 		Long startTime = new Long(System.currentTimeMillis());
-		
+
 		queryAll();
 		queryAllByStorey();
 		exportWallAreaPerPhase();
-		
+
 		Long time = (System.currentTimeMillis() - startTime) / 1000;
 		System.out.println("Overall duration "+ time.toString() + " seconds!");
-		
+
 		sheet.writeAndClose();
 	}
-	
-	
+
+
 	public static void queryAll() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException 
 	{
 		//implement a timer
 		Long startTime = new Long(System.currentTimeMillis());
-		
+
 		QueryMain m = new QueryMain();
 		ClientIfcModel model = m.getModel(projectName);
-		
+
 		List<IfcObject> objects = new ArrayList<IfcObject>();
-		
+
 		objects.addAll(model.getAllWithSubTypes(IfcWallStandardCase.class));
 		objects.addAll(model.getAllWithSubTypes(IfcColumn.class));
 		objects.addAll(model.getAllWithSubTypes(IfcRoof.class));
@@ -73,94 +73,88 @@ public class ExportQuantities
 		objects.addAll(model.getAllWithSubTypes(IfcColumn.class));
 		objects.addAll(model.getAllWithSubTypes(IfcWall.class));
 		objects.addAll(model.getAllWithSubTypes(IfcDoor.class));
-	
-       
-      
-			Iterator<IfcObject> objectIt = objects.iterator();
-			
-			
-			
-			while (objectIt.hasNext())
-			{
-				IfcObject object = objectIt.next();
-				
-				PropertyObject qo = new PropertyObject(object);
-				qo.printProperties();
-			}
-		
-			Long time = (System.currentTimeMillis() - startTime) / 1000;
-			System.out.println("query took "+ time.toString() + " seconds!");
-		
+
+		Iterator<IfcObject> objectIt = objects.iterator();
+
+		while (objectIt.hasNext())
+		{
+			IfcObject object = objectIt.next();
+
+			PropertyObject qo = new PropertyObject(object);
+			qo.printProperties();
+		}
+
+		Long time = (System.currentTimeMillis() - startTime) / 1000;
+		System.out.println("query took "+ time.toString() + " seconds!");
+
 	}
 
 	public static void queryAllByStorey() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException 
 	{
 		//implement a timer
-			Long startTime = new Long(System.currentTimeMillis());
-			
-			QueryMain m = new QueryMain();
-			ClientIfcModel model = m.getModel(projectName);
-	    	
-			List<IfcBuildingStorey> objects = model.getAllWithSubTypes(IfcBuildingStorey.class);
-	       
-			for (IfcBuildingStorey storey : objects)
+		Long startTime = new Long(System.currentTimeMillis());
+
+		QueryMain m = new QueryMain();
+		ClientIfcModel model = m.getModel(projectName);
+
+		List<IfcBuildingStorey> objects = model.getAllWithSubTypes(IfcBuildingStorey.class);
+
+		for (IfcBuildingStorey storey : objects)
+		{
+			System.out.println();
+			System.out.println();
+			System.out.println(storey.getName());
+
+			List<IfcRelContainedInSpatialStructure> contained = storey.getContainsElements();
+			for (IfcRelContainedInSpatialStructure c : contained)
 			{
-				System.out.println();
-				System.out.println();
-				System.out.println(storey.getName());
-				
-				List<IfcRelContainedInSpatialStructure> contained = storey.getContainsElements();
-				for (IfcRelContainedInSpatialStructure c : contained)
+				for (IfcObject el : c.getRelatedElements())
 				{
-					for (IfcObject el : c.getRelatedElements())
-					{
-						PropertyObject qo = new PropertyObject(el);
-						qo.printProperties();
-					}
+					PropertyObject qo = new PropertyObject(el);
+					qo.printProperties();
 				}
 			}
-			
-			Long time = (System.currentTimeMillis() - startTime) / 1000;
-			System.out.println("query took "+ time.toString() + " seconds!");
+		}
+
+		Long time = (System.currentTimeMillis() - startTime) / 1000;
+		System.out.println("query took "+ time.toString() + " seconds!");
 	}
-	
+
 	public static void exportWallAreaPerPhase() throws ServerException, UserException, BiffException, IOException, RowsExceededException, WriteException, BimServerClientException, PublicInterfaceNotFoundException
 	{
 		//implement a timer
 		Long startTime = new Long(System.currentTimeMillis());
-				
+
 		QueryMain m = new QueryMain();
 		ClientIfcModel model = m.getModel(projectName);
-    	
+
 		List<IfcBuildingStorey> objects = model.getAllWithSubTypes(IfcBuildingStorey.class);
-       
+
 		// get the first storey object
 		IfcBuildingStorey storey = objects.get(0);
-		
+
 		System.out.println();
 		System.out.println();
 		System.out.println(storey.getName());
-			
+
 		// create the map to hold the length per phase
 		HashMap<String, Double> lengthPerPhase = new HashMap<String, Double>();
-				
+
 		// get the first storey element 
 		List<IfcRelContainedInSpatialStructure> contained = storey.getContainsElements();
 		for (IfcRelContainedInSpatialStructure c : contained)
 		{
-		
-			
 			for (IfcObject el : c.getRelatedElements())
 			{
 				// select only walls
 				if (el instanceof IfcWallStandardCase || el instanceof IfcWall)
 				{
 					PropertyObject qo = new PropertyObject(el);
-					
+
 					String phase = qo.getQuantity("Phase Created");
 					String lengthStr = qo.getQuantity("Length");
 					Double length = Double.parseDouble(lengthStr);
-					
+
 					// no property set, ignore wall
 					if (phase != null)
 					{
@@ -180,11 +174,11 @@ public class ExportQuantities
 				}
 			}
 		}
-				
-		
+
+
 		// write HashMap to Excel
 		Iterator<String> keyIt = lengthPerPhase.keySet().iterator();
-		
+
 		//start at row 2 to spare heading
 		int row = 2;
 		while (keyIt.hasNext())
@@ -192,18 +186,18 @@ public class ExportQuantities
 			String phase = keyIt.next();
 			Label labelCell = new Label(1, row, phase);
 			sheet.getSheet().addCell(labelCell);
-			
+
 			Number number = new Number(2, row, lengthPerPhase.get(phase).doubleValue());
 			sheet.getSheet().addCell(number);
 			row++;
 		}
-		
-		
-		
+
+
+
 		Long time = (System.currentTimeMillis() - startTime) / 1000;
 		System.out.println("query took "+ time.toString() + " seconds!");
 	}
-	
-	
-	
+
+
+
 }
