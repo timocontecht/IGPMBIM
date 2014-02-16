@@ -1,16 +1,13 @@
 package org.visico.igpm;
 
 
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.json.JsonBimServerClientFactory;
-import org.bimserver.client.soap.SoapBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientException;
-import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;

@@ -11,43 +11,6 @@ import jxl.write.Label;
 import jxl.write.Number;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.bimserver.models.ifc2x3tc1.IfcAmountOfSubstanceMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcAreaMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcBoolean;
@@ -74,7 +37,6 @@ import org.bimserver.models.ifc2x3tc1.IfcPositiveLengthMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcPositivePlaneAngleMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcPositiveRatioMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcProperty;
-import org.bimserver.models.ifc2x3tc1.IfcPropertyBoundedValue;
 import org.bimserver.models.ifc2x3tc1.IfcPropertyEnumeratedValue;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;

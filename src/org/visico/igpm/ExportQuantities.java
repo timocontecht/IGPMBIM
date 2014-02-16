@@ -154,7 +154,6 @@ public class ExportQuantities
 					String phase = qo.getQuantity("Phase Created");
 					String lengthStr = qo.getQuantity("Length");
 					
-
 					// no property set, ignore wall
 					if (phase != null && lengthStr != null)
 					{
@@ -192,8 +191,6 @@ public class ExportQuantities
 			sheet.getSheet().addCell(number);
 			row++;
 		}
-
-
 
 		Long time = (System.currentTimeMillis() - startTime) / 1000;
 		System.out.println("query took "+ time.toString() + " seconds!");
