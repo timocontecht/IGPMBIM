@@ -153,11 +153,12 @@ public class ExportQuantities
 
 					String phase = qo.getQuantity("Phase Created");
 					String lengthStr = qo.getQuantity("Length");
-					Double length = Double.parseDouble(lengthStr);
+					
 
 					// no property set, ignore wall
-					if (phase != null)
+					if (phase != null && lengthStr != null)
 					{
+						Double length = Double.parseDouble(lengthStr);
 						// already a wall with this phase: add length to value
 						if (lengthPerPhase.containsKey(phase))
 						{

@@ -112,7 +112,6 @@ public class PropertyObject
 		
 		for (IfcRelDefines def : defs)
 		{
-			System.out.println(def.getDescription());
 			if (def instanceof IfcRelDefinesByProperties )
 			{
 				IfcRelDefinesByProperties p = (IfcRelDefinesByProperties) def;
