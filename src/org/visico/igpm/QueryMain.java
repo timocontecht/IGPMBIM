@@ -22,9 +22,9 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class QueryMain {
 	
-	private static String name = "bim.tst.user@gmail.com";
+	private static String name = "bim.tst.user2015@gmail.com";
 	private static String password = "letstestbim";
-	private static String server = "http://ctwbisql1.ctw.utwente.nl:8080/bimserver/";
+	private static String server = "http://visico.org/bimserver/";
 	
 	BimServerClient client = null;
 	private List<SProject> projects = null;
@@ -52,8 +52,7 @@ public class QueryMain {
 		
 		JsonBimServerClientFactory factory = new JsonBimServerClientFactory(server);
         try {
-        		System.out.println("Your projects: ");
-                client = factory.create(new UsernamePasswordAuthenticationInfo(name, password));
+        		client = factory.create(new UsernamePasswordAuthenticationInfo(name, password));
                
                 projects = client.getBimsie1ServiceInterface().getAllProjects(true, true);
                 for (SProject project : projects) {
@@ -70,7 +69,7 @@ public class QueryMain {
 
 	public static void main(String[] args) {
 		QueryMain m = new QueryMain();
-		SProject p = m.getProject("tst010214");
+		SProject p = m.getProject("Test");
 		System.out.println(p.getName());
 	}
 	
