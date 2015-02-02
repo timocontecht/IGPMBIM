@@ -21,10 +21,9 @@ import org.bimserver.shared.exceptions.UserException;
 
 
 public class QueryMain {
-	
 	private static String name = "bim.tst.user2015@gmail.com";
 	private static String password = "letstestbim";
-	private static String server = "http://visico.org/bimserver/";
+	private static String server = "http://130.89.77.159:8080/bimserver/";
 	
 	BimServerClient client = null;
 	private List<SProject> projects = null;
