@@ -41,8 +41,7 @@ public class QueryMain {
 	public ClientIfcModel getModel(String projectName) throws UserException, ServerException, BimServerClientException, PublicInterfaceNotFoundException
 	{
 		SProject p = getProject(projectName);
-		System.out.println(p.getRevisions().toString());
-		return client.getModel(p.getOid(), p.getRevisions().get(0), true);
+		return client.getModel(p.getOid(), p.getRevisions().get(p.getRevisions().size() - 1), true);
 		
 	}
 
@@ -54,9 +53,7 @@ public class QueryMain {
         		client = factory.create(new UsernamePasswordAuthenticationInfo(name, password));
                
                 projects = client.getBimsie1ServiceInterface().getAllProjects(true, true);
-                for (SProject project : projects) {
-                        System.out.println(project.getName());
-                }
+               
         } catch (ServiceException e) {
                 e.printStackTrace();
         } catch (PublicInterfaceNotFoundException e) {
