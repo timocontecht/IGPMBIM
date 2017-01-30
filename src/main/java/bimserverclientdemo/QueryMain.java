@@ -14,7 +14,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-
+// second commit try 
 public class QueryMain {
 	private static String name = "l.l.oldescholtenhuis@utwente.nl";
 	private static String password = "VISICO4D";
