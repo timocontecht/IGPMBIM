@@ -20,6 +20,7 @@ public class QueryMain {
 	private static String password = "password";
 	private static String server = "http://bim.utwente.nl:8080";
 	
+	//comment out
 	BimServerClient client = null;
 	private List<SProject> projects = null;
 	
