@@ -16,7 +16,7 @@ import org.bimserver.shared.exceptions.UserException;
  
 public class QueryMain {
 	private static String name = "l.l.oldescholtenhuis@utwente.nl";
-	private static String password = "VISICO4D";
+	private static String password = "password";
 	private static String server = "http://bim.utwente.nl:8080";
 	
 	//comment out
