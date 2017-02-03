@@ -8,7 +8,6 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
-
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServerException;
@@ -16,8 +15,8 @@ import org.bimserver.shared.exceptions.UserException;
 
  
 public class QueryMain {
-	private static String name = "username";
-	private static String password = "password";
+	private static String name = "l.l.oldescholtenhuis@utwente.nl";
+	private static String password = "VISICO4D";
 	private static String server = "http://bim.utwente.nl:8080";
 	
 	//comment out
@@ -37,7 +36,8 @@ public class QueryMain {
 	public ClientIfcModel getModel(String projectName) throws UserException, ServerException, BimServerClientException, PublicInterfaceNotFoundException
 	{
 		SProject p = getProject(projectName);
-		return client.getModel(p, p.getRevisions().get(p.getRevisions().size() - 1), true);
+		return client.getModel(p, p.getRevisions().get(p.getRevisions().size() - 1), false, true);
+		
 	}
 
 	public QueryMain()
