@@ -15,7 +15,7 @@ public class Demo {
 				JsonBimServerClientFactory clientFactory = new JsonBimServerClientFactory("http://bim.utwente.nl:8080");
 				BimServerClient client = clientFactory
 						//.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-						.create(new UsernamePasswordAuthenticationInfo("l.l.oldescholtenhuis@utwente.nl", "VISICO4D"));
+						.create(new UsernamePasswordAuthenticationInfo("l.l.oldescholtenhuis@utwente.nl", "password"));
 				client.getServiceInterface().addProject("testOne", "ifc2x3tc1");
 			} catch (BimServerClientException | ServiceException | ChannelConnectionException e) {
 				e.printStackTrace();
